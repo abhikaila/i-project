@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/global.css" type="text/css">
+  <script type="text/javascript" src="./js/signUp.js"></script>
+</head>
+
+<body style="height:100vh;" class="bg">
+  <div class="container-fluid">
+    <!-- heading -->
+    <div class="col-4 text-center mx-auto">
+      <h1 class="text-white" style="margin-top: 20px;">SignUp</h1>
+      <hr>
+    </div>
+
+    <!-- Signup Form -->
+    <section class="row justify-content-center">
+
+      <!-- nav heading -->
+      <div class="nav-justified my-5 form-container col-10 col-sm-8 col-md-6 col-lg-4">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="personal-details-tab" data-toggle="tab" href="#personal-details" role="tab"
+              aria-controls="personal-details" aria-selected="true">Personal Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="education-details-tab" data-toggle="tab" href="#education-details" role="tab"
+              aria-controls="education-details" aria-selected="false">Education Details</a>
+          </li>
+        </ul>
+
+        <form action="./pages/signIn/index.html" method="POST" class="my-5" id="signUp-form"
+          onsubmit="return saveData()">
+          <!-- nav body -->
+          <div class="tab-content" id="myTabContent">
+            <!-- Personal Details -->
+            <div class="tab-pane fade show active mx-auto" id="personal-details" role="tabpanel"
+              aria-labelledby="personal-details-tab">
+
+              <div class="form-row">
+                <!-- first Name -->
+                <div class="form-group col-md-6">
+                  <label for="firstName">First Name</label>
+                  <input type="text" class="form-control" id="firstName" name="firstName">
+                </div>
+
+                <!-- last Name -->
+                <div class="form-group col-md-6">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" name="lastName">
+                </div>
+              </div>
+              <!-- Birth Date -->
+              <div class="form-group">
+                <label for="birthDate">Birthdate</label>
+                <input type="date" class="form-control" max="2018-12-31" min="1990-01-01" id="birthDate"
+                  name="birthDate">
+              </div>
+
+              <div class="form-group">
+                <label for="userImage">Profile Image</label>
+                <input type="file" id="userImage" class="bg-dark text-white">
+              </div>
+              <!-- Gender -->
+              <div class="form-group">
+                <label for="gender" class="mr-5">Gender</label>
+                <div id="gender">
+                  <div class="form-check form-check-inline col-lg-auto col-md-auto col-md-auto col-sm-auto">
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                    <label class="form-check-label" for="male">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline col-lg-auto col-md-auto col-md-auto col-sm-auto">
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                    <label class="form-check-label" for="female">Female</label>
+                  </div>
+                  <div class="form-check form-check-inline col-lg-auto col-md-auto col-md-auto col-sm-auto">
+                    <input class="form-check-input" type="radio" name="gender" id="other" value="other">
+                    <label class="form-check-label" for="other">Other</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- address -->
+              <div class="form-group">
+                <label for="Address">Address</label>
+                <textarea class="form-control" id="Address" rows="3"></textarea>
+              </div>
+              <div class="form-row">
+                <!-- city -->
+                <div class="form-group col-md-4">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" id="userCity" name="userCity">
+                </div>
+                <!-- state -->
+                <div class="form-group col-md-4">
+                  <label for="state">State</label>
+                  <input type="text" class="form-control" name="userState" id="userState">
+                </div>
+                <!-- country -->
+                <div class="form-group col-md-4">
+                  <label for="country">Country</label>
+                  <select class="form-control" name="userCountry" id="userCountry">
+                    <option selected disabled>Choose...</option>
+                    <option>India</option>
+                    <option>U.S.A</option>
+                    <option>Canada</option>
+                    <option>Australia</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- mobile No -->
+              <div class="form-group">
+                <label for="mobileNo">Mobile No</label>
+                <input type="number" class="form-control" id="mobileNo" name="mobileNo">
+              </div>
+
+              <!-- Next Tab Btn -->
+              <div class="text-center">
+                <a class="btn btn-bg next text-white my-3 col-lg-4 col-md-4">Next</a>
+              </div>
+
+            </div>
+
+            <!-- Education details -->
+            <div class="tab-pane fade mx-auto" id="education-details" role="tabpanel"
+              aria-labelledby="education-details-tab">
+
+
+              <!-- college Name -->
+              <div class="form-group">
+                <label for="collegeName">CollegeName</label>
+                <input type="text" class="form-control" id="clgName" name="clgName">
+              </div>
+
+              <!-- college Address -->
+              <div class="form-row">
+                <!-- city -->
+                <div class="form-group col-md-4">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" id="clgCity" name="clgCity">
+                </div>
+                <!-- state -->
+                <div class="form-group col-md-4">
+                  <label for="state">State</label>
+                  <input type="text" class="form-control" name="clgState" id="clgState">
+                </div>
+                <!-- country -->
+                <div class="form-group col-md-4">
+                  <label for="country">Country</label>
+                  <select class="form-control" name="clgCountry" id="clgCountry">
+                    <option selected disabled>Choose...</option>
+                    <option>India</option>
+                    <option>U.S.A</option>
+                    <option>Canada</option>
+                    <option>Australia</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="userEmail">Email address</label>
+                <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+              </div>
+
+              <!-- Password -->
+              <div class="form-group">
+                <label for="userPassword">Password</label>
+                <input type="password" class="form-control" id="userPassword" aria-describedby="passwordHelp">
+                <small id="passwordHelp" class="form-text">
+                  Your password must be 8-20 characters long, contain letters,@,#,* and numbers, and must not contain
+                  space or emoji.
+                </small>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword">
+              </div>
+
+              <!-- t & c checkBox -->
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="termsAndCondiCheckBox">
+                <label class="form-check-label" for="termsAndCondiCheckBox"><small>Accept all terms &
+                    condition.</small></label>
+              </div>
+              <div class="text-center">
+                <!-- Previous btn for previous tab -->
+                <a class="btn btn-bg previous text-white my-3 col-lg-4 mr-5">Previous</a>
+
+                <!-- submit btn -->
+                <button type="submit" class="btn btn-bg my-3 mx-auto col-lg-4">Submit</button>
+              </div>
+
+            </div>
+        </form>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+  <script>
+    // onclick for next btn
+    $('.next').click(function () {
+      $('.nav-tabs > .nav-item > .active').parent().next('li').find('a').trigger('click');
+    });
+
+    // onclick for previous btn
+    $('.previous').click(function () {
+      $('.nav-tabs > .nav-item > .active').parent().prev('li').find('a').trigger('click');
+    });
+
+    // for save image to sessionStorage
+    document.querySelector("#userImage").addEventListener("change", function () {
+      console.log(this.files);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        sessionStorage.setItem("user-Image", reader.result);
+      });
+      reader.readAsDataURL(this.files[0]);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+/* for background */
+.bg {
+    height: 100%;
+    background: linear-gradient(rgb(3, 3, 3), rgb(54, 54, 53), rgb(95, 95, 95));
+    widows: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center; 
+}
+/* 
+.flex-fill{
+    flex: 1 1 auto;
+} */
+
+hr{
+    border-top: 1.5px solid rgb(121, 121, 121);
+}
+/* bg for user Profile Image */
+#userImage{
+    color : rgba(255, 255, 255, 0);
+    background: rgba(255, 255, 255, 0);
+    
+}
+
+/* for signIn, singnUp pages */
+.form-container {
+    color : #fff;
+    background: rgba(255, 255, 255, 0.192);
+    padding: 30px;
+    margin-top: 20vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+/* for homePage */
+.form-container-homePage {
+    color : rgb(0, 0, 0);
+    background: rgba(197, 197, 197, 0.767);
+    padding: 30px;
+    margin-top: 10vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
+/* btn styling */
+.btn-bg{
+    color: #fff;
+    background: rgba(0, 0, 0, 0.548);
+}
+.btn-bg:hover{
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.747);
+}
+
+.btn-bg-logOut{
+    color: #fff;
+    border: 2px solid rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.548);
+}
+.btn-bg-logOut:hover{
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.747);
+}
+
+/* tab and tab hover effect */
+div ul li a {
+    color : #fff;
+}
+div ul li a:hover {
+    color : rgba(255, 255, 255, 0.548);
+    background: rgba(255, 255, 255, 0);
+}

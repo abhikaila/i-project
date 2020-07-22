@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/global.css" type="text/css">
+    <script>
+        if (sessionStorage.getItem("userEmail") == null || sessionStorage.getItem("userEmail") == "") {
+            window.location.replace('../../index.html');
+        }
+    </script>
+</head>
+
+<body style="height:100vh;" class="bg">
+
+    <section>
+
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-dark sticky-top">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-center">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Project</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn nav-link text-center mx-auto"
+                            onclick="logOut()"><strong>LogOut</strong></button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- User Data -->
+        <div class="container-fluid">
+
+            <!-- Personal Data -->
+            <div class="col-lg-5 my-5 col-md-8 col-sm-8 col-10 form-container-homePage mx-auto">
+                <h2 class="text-dark text-center">Personal Details</h2>
+                <hr>
+                <div class="row my-2 ">
+                    <div class="col d-flex justify-content-center">
+                        <img src="../../assets/user-profile-image.jpg" alt="userImage" id="userImage"
+                            style="height: 200px;width: 200px;">
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-4"><strong>Name</strong></div>
+                    <div class="col-8"><span id="firstName1"></span></div>
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-4"><strong>Birth Date</strong></div>
+                    <div class="col-8"><span id="birthDate"></span></div>
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-4"><strong>Gender</strong></div>
+                    <div class="col-8"><span id="gender"></span></div>
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-4"><strong>Address</strong></div>
+                    <div class="col-8"><span id="address"></span></div>
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-4"><strong>City</strong></div>
+                    <div class="col-8"><span id="userCity"></span></div>
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-4"><strong>State</strong></div>
+                    <div class="col-8"><span id="userState"></span></div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-4"><strong>Country</strong></div>
+                    <div class="col-8"><span id="userCountry"></span></div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-4"><strong>Mobile No</strong></div>
+                    <div class="col-8"><span id="mobileNo"></span></div>
+                </div>
+
+            </div>
+
+            <!-- Educational Data -->
+            <div class="col-lg-5 col-md-8 col-sm-8 my-5 col-10 form-container-homePage mx-auto">
+                <h2 class="text-dark text-center">Educational Details</h2>
+                <hr>
+                <div class="row my-2">
+                    <div class="col-4"><strong>College Name</strong></div>
+                    <div class="col-8"><span id="clgName"></span></div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-4"><strong>College City</strong></div>
+                    <div class="col-8"><span id="clgCity"></span></div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-4"><strong>College State</strong></div>
+                    <div class="col-8"><span id="clgState"></span></div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-4"><strong>College Country</strong></div>
+                    <div class="col-8"><span id="clgCountry"></span></div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-4"><strong>Email</strong></div>
+                    <div class="col-8"><span id="userEmail"></span></div>
+                </div>
+
+            </div>
+        </div>
+        <section <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+
+            <script type="text/JavaScript" src="../../js/homePage.js"></script>
+
+</body>
+
+</html>
