@@ -8,8 +8,11 @@ function check() {
         if (inputEmail === sessionStorage.getItem("userEmail") &&
             inputPassword === sessionStorage.getItem("userPassword")) {
             return true;
+        } else if (inputEmail === sessionStorage.getItem("userEmail")) {
+            alert("Password is wrong, Please enter correct Password.");
+            return false;
         } else {
-            alert("Invalid emial or password...");
+            alert("EmailId is wrong, Please enter correct email.");
             return false;
         }
 

@@ -1,7 +1,9 @@
 /* for background */
 .bg {
     height: 100%;
-    background: linear-gradient(rgb(3, 3, 3), rgb(54, 54, 53), rgb(95, 95, 95));
+    background: linear-gradient(-180deg, rgba(74,11,72,1) 0%, rgba(154,3,48,1) 50%, rgba(201,0,83,1) 100%);
+
+    /* background: linear-gradient(rgb(3, 3, 3), rgb(54, 54, 53), rgb(95, 95, 95)); */
     widows: 100%;
     background-size: cover;
     background-attachment: fixed;
@@ -32,22 +34,31 @@ hr{
 }
 /* for homePage */
 .form-container-homePage {
-    color : rgb(0, 0, 0);
-    background: rgba(197, 197, 197, 0.767);
+    /* color : rgb(0, 0, 0);
+    background: rgba(197, 197, 197, 0.767); */
+
+
+    color : #fff;
+    background: rgba(255, 255, 255, 0.192);
+
     padding: 30px;
     margin-top: 10vh;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #000;
 }
 
+.bg-nav{
+    background-color: #290525!important;;
+}
+
 /* btn styling */
 .btn-bg{
     color: #fff;
-    background: rgba(0, 0, 0, 0.548);
+    background: #7b0639;
 }
 .btn-bg:hover{
     color: rgb(255, 255, 255);
-    background: rgba(0, 0, 0, 0.747);
+    background: #580228;
 }
 
 .btn-bg-logOut{
