@@ -2,10 +2,11 @@
 // save the form data into sessionStorage
 function saveData() {
 
-    var firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO,
+    var userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO,
         clgName, clgCity, clgState, clgCountry, userEmail, userPassword, t_cCheckBox;
 
     // get values from form input 
+    userImage = document.getElementById('userImage').value;
     firstName = document.getElementById('firstName').value;
     lastName = document.getElementById('lastName').value;
     birthDate = document.getElementById('birthDate').value;
@@ -31,7 +32,7 @@ function saveData() {
     t_cCheckBox = document.getElementById('termsAndCondiCheckBox');
 
     // validate user input
-    if (!validateData(firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO,
+    if (!validateData(userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO,
         clgName, clgCity, clgState, clgCountry, userEmail, userPassword, confirmPassword, t_cCheckBox)) {
         return false;
     }
@@ -66,11 +67,11 @@ function saveData() {
 }
 
 // validate the user input
-function validateData(firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO,
+function validateData(userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO,
     clgName, clgCity, clgState, clgCountry, userEmail, userPassword, confirmPassword, t_cCheckBox) {
 
     // check if given data is empty or not
-    for (var i = 0; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i++) {
         if (arguments[i] == null || arguments[i] == "" || arguments[i] === "Choose...") {
             alert("please fill all details..");
             return false;
@@ -88,6 +89,9 @@ function validateData(firstName, lastName, birthDate, gender, Address, userCity,
         return false;
     }
 
+    if (!checkUserImage(userImage)) {
+        return false;
+    }
     if (!checkAddress(Address)) {
         return false;
     }
@@ -151,6 +155,47 @@ function checkLastName(lastName) {
     }
     return true;
 
+}
+
+function checkUserImage(userImage) {
+    var extension = userImage.substr(userImage.lastIndexOf('.') + 1).toLowerCase();
+    var allowedExtensions = ['jpg', 'png', 'jpeg', ''];
+
+    if (allowedExtensions.indexOf(extension) === -1) {
+        alert('Invalid file Format. Only ' + allowedExtensions.join(', ') + ' are allowed.');
+        document.getElementById('userImage').value = ""
+        return false;
+    }
+
+    if (!checkImageSize()) return false;
+    try {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+            sessionStorage.setItem("user-Image", reader.result);
+        });
+        reader.readAsDataURL(document.getElementById('userImage').files[0]);
+    } catch (err) {
+        console.log(err);
+    }
+    return true;
+
+}
+
+function checkImageSize() {
+    const file = document.getElementById('userImage');
+    // Check if any file is selected. 
+    if (file.files.length > 0) {
+        for (let i = 0; i <= file.files.length - 1; i++) {
+            let fsize = file.files.item(i).size;
+            let fileSize = Math.round((fsize / 1024));
+            // The size of the file. 
+            if (fileSize >= 2048) {
+                alert("Image File too Big, please select a file less than 2mb.");
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 function checkAddress(Address) {

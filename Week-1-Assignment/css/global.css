@@ -7,10 +7,6 @@
     background-attachment: fixed;
     background-position: center center; 
 }
-/* 
-.flex-fill{
-    flex: 1 1 auto;
-} */
 
 hr{
     border-top: 1.5px solid rgb(121, 121, 121);
@@ -26,7 +22,10 @@ hr{
 .form-container {
     color : #fff;
     background: rgba(255, 255, 255, 0.192);
-    padding: 30px;
+    padding-top: 20px;
+    padding-left:15px;
+    padding-right: 15px;
+    padding-bottom:0px;  
     margin-top: 20vh;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #000;

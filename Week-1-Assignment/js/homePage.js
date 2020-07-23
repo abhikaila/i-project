@@ -17,20 +17,15 @@ if (typeof (Storage) !== "undefined") {
     document.getElementById("clgState").innerHTML = ": " + sessionStorage.getItem("clgState");
     document.getElementById("clgCountry").innerHTML = ": " + sessionStorage.getItem("clgCountry");
     document.getElementById("userEmail").innerHTML = ": " + sessionStorage.getItem("userEmail");
-
-} else {
-    alert("Sorry, your browser does not support Web Storage...");
-}
-// load Profile image
-document.addEventListener("DOMContentLoaded", () => {
     const recentImageDataURL = sessionStorage.getItem("user-Image");
     if (recentImageDataURL) {
-        document.querySelector("#userImage").setAttribute("src", recentImageDataURL);
+        document.getElementById("userImage").src = recentImageDataURL;
     } else {
         console.log("No image found..!!1");
     }
-});
-
+} else {
+    alert("Sorry, your browser does not support Web Storage...");
+}
 
 // clear the sessioStorage data and logOut user
 function logOut() {
