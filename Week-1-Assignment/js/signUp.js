@@ -1,3 +1,46 @@
+// onclick for next btn
+$('.next').click(function () {
+    if (validatePersonalData()) {
+        $('.nav-tabs > .nav-item > .active').parent().next('li').find('a').removeClass("disabled");
+        $('.nav-tabs > .nav-item > .active').parent().next('li').find('a').trigger('click');
+    } else {
+        $('.nav-tabs > .nav-item > .active').parent().next('li').find('a').addClass("disabled");
+    }
+});
+
+// onclick for previous btn
+$('.previous').click(function () {
+    $('.nav-tabs > .nav-item > .active').parent().prev('li').find('a').trigger('click');
+});
+
+
+function validatePersonalData() {
+    var userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO;
+    userImage = document.getElementById('userImage').value;
+    firstName = document.getElementById('firstName').value;
+    lastName = document.getElementById('lastName').value;
+    birthDate = document.getElementById('birthDate').value;
+    var g = document.getElementsByName('gender');
+    var gender;
+    for (var i = 0; i < g.length; i++) {
+        if (g[i].checked) {
+            gender = g[i].value;
+        }
+    }
+    Address = document.getElementById('Address').value;
+    userCity = document.getElementById('userCity').value;
+    userState = document.getElementById('userState').value;
+    userCountry = document.getElementById('userCountry').value;
+    mobileNO = document.getElementById('mobileNo').value;
+
+    // validate user input
+    if (!validatePersonalData1(userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry,
+        mobileNO)) {
+        return false;
+    }
+    return true;
+}
+
 
 // save the form data into sessionStorage
 function saveData() {
@@ -32,8 +75,7 @@ function saveData() {
     t_cCheckBox = document.getElementById('termsAndCondiCheckBox');
 
     // validate user input
-    if (!validateData(userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry,
-        mobileNO, clgName, clgCity, clgState, clgCountry, userEmail, userPassword, confirmPassword, t_cCheckBox)) {
+    if (!validateData(clgName, clgCity, clgState, clgCountry, userEmail, userPassword, confirmPassword, t_cCheckBox)) {
         return false;
     }
 
@@ -59,8 +101,7 @@ function saveData() {
 }
 
 // validate the user input
-function validateData(userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO,
-    clgName, clgCity, clgState, clgCountry, userEmail, userPassword, confirmPassword, t_cCheckBox) {
+function validatePersonalData1(userImage, firstName, lastName, birthDate, gender, Address, userCity, userState, userCountry, mobileNO) {
 
     // check if given data is empty or not
     for (var i = 1; i < arguments.length; i++) {
@@ -80,6 +121,20 @@ function validateData(userImage, firstName, lastName, birthDate, gender, Address
     if (!checkUserState(userState)) return false;
     if (!checkMobileNo(mobileNO)) return false;
 
+    return true;
+}
+
+function validateData(clgName, clgCity, clgState, clgCountry, userEmail, userPassword, confirmPassword, t_cCheckBox) {
+
+    // check if given data is empty or not
+    for (var i = 0; i < arguments.length; i++) {
+        if (arguments[i] == null || arguments[i] == "" || arguments[i] === "Choose...") {
+            alert("Please fill all details..");
+            return false;
+        }
+
+    }
+
     // Educational Details
     if (!checkClgName(clgName)) return false;
     if (!checkClgCity(clgCity)) return false;
@@ -93,6 +148,7 @@ function validateData(userImage, firstName, lastName, birthDate, gender, Address
     }
     return true;
 }
+
 
 // save data to session Storage
 function saveDataToSessionStorage(userInfo) {

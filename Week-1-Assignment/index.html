@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="./css/global.css" type="text/css">
-  <script type="text/javascript" src="./js/signUp.js"></script>
 </head>
 
 <body style="height:100vh;" class="bg">
@@ -34,8 +33,9 @@
               aria-controls="personal-details" aria-selected="true">Personal Details</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="education-details-tab" data-toggle="tab" href="#education-details" role="tab"
-              aria-controls="education-details" aria-selected="false">Education Details</a>
+            <a class="nav-link disabled" id="education-details-tab" data-toggle="tab" href="#education-details"
+              role="tab" aria-controls="education-details" aria-selected="false" disabled>Education
+              Details</a>
           </li>
         </ul>
 
@@ -227,18 +227,8 @@
     crossorigin="anonymous"></script>
 
 
-  <script>
-    // onclick for next btn
-    $('.next').click(function () {
-      $('.nav-tabs > .nav-item > .active').parent().next('li').find('a').trigger('click');
-    });
+  <script type="text/javascript" src="./js/signUp.js"></script>
 
-    // onclick for previous btn
-    $('.previous').click(function () {
-      $('.nav-tabs > .nav-item > .active').parent().prev('li').find('a').trigger('click');
-    });
-
-  </script>
 </body>
 
 </html>
