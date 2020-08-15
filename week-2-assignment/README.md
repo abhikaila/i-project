@@ -32,7 +32,7 @@ It is basically a root component. Also store the data for the system and pass as
             (<PublicPanel ... />)} />
         <Redirect to="/inputPanel" />
         )} />
-</Switch
+</Switch>
 ```
 
 
