@@ -111,6 +111,7 @@ app.delete("/user/:id", async (req, res) => {
 
 // send data to github repo
 app.get("/sendDataToGithubRepo", async (req, res) => {
+
     try {
 
         const studentData = await pool.query("SELECT * FROM users WHERE role='Student'");
@@ -119,7 +120,7 @@ app.get("/sendDataToGithubRepo", async (req, res) => {
         const sData = JSON.stringify(studentData.rows);
         const tData = JSON.stringify(teacherData.rows);
 
-        const res1 = spawn('python', ['githubAuto.py', sData, tData]);
+        const res1 = spawn('python', ['githubSendData.py', sData, tData]);
 
         res1.stdout.on('data', function (data) {
             console.log(data.toString());
@@ -128,6 +129,71 @@ app.get("/sendDataToGithubRepo", async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+});
+
+// fetch data from github repo
+app.get("/fetchDataFromGithubRepo", (req, res, next) => {
+    try {
+        const sData = spawn('python', ['githubFetchDataStudent.py']);
+        var sdata1 = [];
+        sData.stdout.on('data', function (data) {
+            sdata1 = JSON.parse(data.toString());
+            req.sdata1 = sdata1;
+            next();
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    res = "0";
+}, function (req, res, next) {
+    if (res == "0")
+        next();
+
+    try {
+        const tData = spawn('python', ['githubFetchDataTeacher.py']);
+        var tdata1 = [];
+
+        tData.stdout.on('data', function (data) {
+            tdata1 = JSON.parse(data.toString());
+            req.tdata1 = tdata1;
+            next();
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    res = "0";
+}, async function (req, res) {
+    if (res == "0")
+        res.send("0");
+
+    var users = req.sdata1.concat(req.tdata1);
+
+    for (let i = 0; i < users.length; i++) {
+        try {
+            const { name, age, city, state, role, mobileno, email, password } = users[i];
+
+            const isUserExist = await pool.query(
+                "SELECT * FROM users WHERE email = $1",
+                [email]
+            );
+            if (isUserExist.rows.length > 0) {
+                // res.json("-1");
+                console.log("user exist");
+            } else {
+                const data = await pool.query(
+                    "INSERT INTO users (name, age, city, state, mobileno,role, email, password) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
+                    [name, age, city, state, mobileno, role, email, password]
+                );
+                console.log(data.rows[0]);
+                console.log("user inserted successfully.");
+                // res.json("1");
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.json("0");
+        }
+    }
+    res.json("1");
 });
 
 app.listen(5000, () => {

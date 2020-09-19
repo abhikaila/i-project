@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
+import { Spinner } from "reactstrap";
 
 class HomePage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            users: []
+            users: [],
+            loading: true
         }
         this.renderUser = this.renderUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+        this.toggleLoading = this.toggleLoading.bind(this);
     }
 
+    toggleLoading() {
+        this.setState({ loading: !this.state.loading });
+    }
     deleteUser = function (id) {
         try {
             fetch("http://localhost:5000/user/" + id, {
@@ -32,6 +38,7 @@ class HomePage extends Component {
     };
 
     sendDataToGithubRepo = function () {
+        this.toggleLoading();
         try {
             fetch("http://localhost:5000/sendDataToGithubRepo")
                 .then(res => {
@@ -41,6 +48,7 @@ class HomePage extends Component {
                 .then(msg => {
                     if (msg == 1) {
                         alert("Data save to github Repository Successfully.");
+                        this.toggleLoading();
                     } else {
                         alert("An error occur Try again...");
                     }
@@ -51,18 +59,39 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
+        // fetch datafrom user from github and store in database
         try {
-            fetch("http://localhost:5000/users")
+            fetch("http://localhost:5000/fetchDataFromGithubRepo")
                 .then(res => {
                     console.log(res);
                     return res.json()
                 })
-                .then(users => {
-                    this.setState({ users })
+                .then(msg => {
+                    if (msg == 1) {
+                        // alert("Data fetch from github Repository Successfully.");
+                        // fetch data of user from database
+                        try {
+                            fetch("http://localhost:5000/users")
+                                .then(res => {
+                                    console.log(res);
+                                    return res.json()
+                                })
+                                .then(users => {
+                                    this.toggleLoading();
+                                    this.setState({ users });
+                                });
+                        } catch (err) {
+                            console.error(err.message);
+                        }
+                    } else {
+                        alert("An error occur Try again...");
+                        this.toggleLoading();
+                    }
                 });
         } catch (err) {
             console.error(err.message);
         }
+
     }
 
     renderUser = function () {
@@ -106,35 +135,49 @@ class HomePage extends Component {
             window.history.back();
             return false;
         }
-        return (
-            <div className="mx-auto text-center">
-                <div className="mt-5"></div>
-                <br />
-                <h1 className="text-center">Users</h1>
-                <div className="table-responsive col-lg-8 mx-auto">
-                    <table className="table text-capitalize table-bordered table-striped ml-auto">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>City</th>
-                                <th>State</th>
-                                <th>Mobile NO</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.renderUser()}
-                        </tbody>
-                    </table>
+
+        // { this.toggleLoading() }
+        if (this.state.loading) {
+            return (
+                <div className="text-center mx-auto align-self-center" style={{ marginTop: 300 }}>
+                    <Spinner className="text-primary">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                    <span className="ml-2 align-self-center">Loading...</span>
                 </div>
-                <button className="btn btn-primary my-5" onClick={() => this.sendDataToGithubRepo()}>
-                    Send data to github Repo
-                </button>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div className="mx-auto text-center">
+                    <div className="mt-5"></div>
+                    <br />
+                    <h1 className="text-center">Users</h1>
+
+                    <div className="table-responsive col-lg-8 mx-auto">
+                        <table className="table text-capitalize table-bordered table-striped ml-auto">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Mobile NO</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.renderUser()}
+                            </tbody>
+                        </table>
+                    </div>
+                    <button className="btn btn-primary my-5" onClick={() => this.sendDataToGithubRepo()}>
+                        Send data to github Repo
+                    </button>
+                </div>
+            );
+        }
     }
 }
 

@@ -1,10 +1,11 @@
 import sys
 from github import Github
+from gh import *
 import json
 try:
 
     # Enter your username and password of github
-    g = Github("username", "password")
+    g = Github(username, password)
     user = g.get_user()
 
     # Create a repo wherer you want to save data
@@ -12,7 +13,7 @@ try:
     # 1. studentData.json
     # 2. teacherData.json
     # Enter path to your repository where this files are created
-    repo = g.get_repo("username/repo-name")
+    repo = g.get_repo("abhikaila/i-project-data")
     
     studentFile = repo.get_contents("studentData.json")
     teacherFile = repo.get_contents("teacherData.json")
